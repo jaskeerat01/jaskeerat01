@@ -1,16 +1,27 @@
-<h1 align="center">Hi 👋, I'm Jaskeerat</h1>
+# Hi there, I'm Jaskeerat 👋
 
-<!--
-**jaskeerat01/jaskeerat01** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+![Profile Views](https://komarev.com/ghpvc/?username=jaskeerat01&color=blue)
 
-Here are some ideas to get you started:
+## About Me
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+I'm a passionate developer with a love for creating innovative solutions and exploring new technologies. My journey in the world of programming started with curiosity and has now become a fulfilling career.
+
+- 🌱 I’m currently learning **Machine Learning and AI**
+- 💬 Ask me about **Python, JavaScript, and Web Development**
+- 📫 How to reach me: **[mailtojaskeerat@gmail.com](mailto:mailtojaskeerat@gmail.com)**
+- ⚡ Fun fact: I love solving puzzles and playing chess in my free time
+
+## Skills
+
+- **Languages:** Python, JavaScript, C++
+- **Web Development:** HTML, CSS
+- **Databases:** MySQL
+- **Tools:** Git, Github
+
+## GitHub Stats
+
+![Jaskeerat's GitHub stats](https://github-readme-stats.vercel.app/api?username=jaskeerat01&show_icons=true&theme=radical)
+
+## Connect with Me
+
+- LinkedIn: [Jaskeerat's LinkedIn](https://www.linkedin.com/in/jaskeerat01/)
