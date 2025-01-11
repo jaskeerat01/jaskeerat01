@@ -8,7 +8,7 @@ I'm a passionate developer with a love for creating innovative solutions and exp
 
 - 🌱 I’m currently learning **Machine Learning and AI**
 - 💬 Ask me about **Python, JavaScript, and Web Development**
-- 📫 How to reach me: **[mailtojaskeerat@gmail.com](mailto:mailtojaskeerat@gmail.com)**
+- 📫 How to reach me: **[sjaskeerat95@gmail.com](sjaskeerat95@gmail.com)**
 - ⚡ Fun fact: I love solving puzzles and playing chess in my free time
 
 ## Skills
