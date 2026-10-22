@@ -1,0 +1,9 @@
+# Netlify / Cloudflare Pages redirects.
+#
+# The site links to explicit .html documents rather than folder URLs, so a
+# visitor never sees the folder layout in the address bar. These rules make
+# sure that typing a folder URL directly lands on the document instead.
+
+/writeups/        /writeups/index.html        301
+/breach-reports/  /breach-reports/index.html  301
+/projects/        /projects/index.html        301
