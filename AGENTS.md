@@ -432,11 +432,50 @@ with each other.
 
 **Two-column data rows** use `.spec`: a `.spec__key` column of small uppercase
 labels and a `.spec__val` column of content. Below 40rem it collapses to one
-column.
+column, and a key plus its value then read as a single group: the key gives up
+its hairline and the value's bottom border is the only divider between groups.
+Keep it that way. If the key keeps its own rule in one-column mode, it sits
+flush against the first bordered chip and the two 1px lines merge into a
+heavier 2px line — the collision this rule exists to prevent.
 
 **Chip lists** use `<ul class="chips" role="list">` with `<li>` items. The
 `role="list"` restores the list semantics that Safari drops when a list is
 unstyled or flexed.
+
+**The header stays on the page column.** `.bar` is full-bleed by design — the
+2px rule has to run edge to edge — but its *contents* must line up with `.wrap`,
+which is centred once the viewport is wider than `--maxw`. That is why its
+inline padding is
+
+```css
+padding-inline: calc(max(0px, (100% - var(--maxw)) / 2) + var(--pad));
+```
+
+Do not put `padding-inline: var(--pad)` back: on a 1440px screen that leaves the
+wordmark 92px to the left of the first heading, and it is the only element on
+the site that would not share the content column.
+
+**The breakpoint ladder.** The stylesheet moves in steps, and each step has one
+job. Add to the existing step rather than inventing a new one:
+
+| Width | What changes |
+| --- | --- |
+| 64rem | `.cells` drops from three columns to two |
+| 54rem | the alias byline leaves the bar; the nav keeps the wordmark's row |
+| 52rem | the hero becomes one column and the practice-area list sits below |
+| 43rem | the nav is set a step smaller (0.72rem) but keeps its row |
+| 41rem | the nav drops beneath the wordmark, full width and left-aligned; bar padding tightens; `scroll-padding-top` grows to 7rem |
+| 40rem | `.cells` and `.spec` become one column; the tagline tracking tightens |
+| 26rem | the nav tightens again (0.68rem); the hero actions become one full-width column; `scroll-padding-top` grows to 8rem |
+
+**The sticky bar has a height budget.** The bar is sticky, so every pixel it
+takes is gone from every screen. On a phone it is two rows and ~88px — the
+wordmark on one, the navigation on the next. Keep it there. Three rows of
+navigation (~118px) at 320px is the floor, not the target. The
+`scroll-padding-top` values in section 02 of the stylesheet track the bar
+heights; if you make the bar taller, raise them too, or an anchor jump will
+land the heading behind it.
+
 
 **Do not add new colours.** The palette is a warm near-black, a warm
 off-white, a warm grey and a single ember accent. There is no second accent,
@@ -621,8 +660,12 @@ content has been hand-edited fails and is named, while a page an editor has
 merely reformatted is only noted. Put content changes in
 `tools/content.json`.
 
-If you changed the CSS, also load the site in a browser at 1440px and at 390px
-and check the page you changed.
+If you changed the CSS, also load the site in a browser at four widths, because
+each one catches a different failure: **1920px** (is the bar still on the page
+column?), **1440px**, **768px** (the two-column hero and the three-column rows
+are at their tightest here) and **390px** (the two-row bar, one-column grids and
+stacked actions). Add **320px** if you touched the navigation. Check the page you
+changed, and check that nothing scrolls sideways.
 
 **Turn off format-on-save for this folder** if your editor has it. A formatter
 will rewrite the generated HTML into its own style, and the next build will

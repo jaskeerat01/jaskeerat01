@@ -129,6 +129,21 @@
     scroll-padding-top: 6rem;
   }
 
+  /* The bar is sticky and gains a row when the navigation wraps, so the
+     anchor offset has to grow with it — otherwise a jump lands the heading
+     behind the bar. These offsets match the bar heights in section 05. */
+  @media (max-width: 41rem) {
+    html {
+      scroll-padding-top: 7rem;
+    }
+  }
+
+  @media (max-width: 26rem) {
+    html {
+      scroll-padding-top: 8rem;
+    }
+  }
+
   body {
     background: var(--paper);
     color: var(--ink);
@@ -284,7 +299,10 @@
     gap: 1.25rem;
     flex-wrap: wrap;
     padding-block: 0.875rem;
-    padding-inline: var(--pad);
+    /* Keep the bar's contents on the page column rather than on the viewport
+       edge. Once the viewport is wider than --maxw the wrap is centred, and a
+       bar pinned to the viewport would run ~90px out of line with it. */
+    padding-inline: calc(max(0px, (100% - var(--maxw)) / 2) + var(--pad));
     background: var(--paper);
     color: var(--ink);
     border-bottom: var(--rule) solid currentColor;
@@ -361,7 +379,36 @@
     color: var(--paper);
   }
 
+  /* The byline is the first thing to go: it is decoration, and the navigation
+     needs the room more. */
   @media (max-width: 54rem) {
+    .bar__by {
+      display: none;
+    }
+  }
+
+  /* Set the navigation a step smaller before it is forced onto its own row, so
+     it keeps the wordmark's company for another ~130px of viewport. */
+  @media (max-width: 43rem) {
+    .bar__nav li {
+      margin-inline-end: 0.5rem;
+    }
+
+    .bar__nav a {
+      padding-block: 0.35rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  /* Below this the navigation cannot share the row even at the smaller size,
+     so it drops beneath the wordmark: full width, left-aligned. */
+  @media (max-width: 41rem) {
+    .bar {
+      gap: 0.5rem 0.75rem;
+      padding-block: 0.7rem;
+    }
+
     .bar__nav {
       margin-inline-start: 0;
       inline-size: 100%;
@@ -371,9 +418,18 @@
     .bar__nav ul {
       text-align: start;
     }
+  }
 
-    .bar__by {
-      display: none;
+  /* The narrowest phones: tighten once more rather than let a link break its
+     own word or spill onto a third row. */
+  @media (max-width: 26rem) {
+    .bar__nav li {
+      margin-inline-end: 0.375rem;
+    }
+
+    .bar__nav a {
+      font-size: 0.68rem;
+      letter-spacing: 0.02em;
     }
   }
 }
@@ -552,6 +608,19 @@
   @media (max-width: 40rem) {
     .hero__full {
       letter-spacing: 0.16em;
+    }
+  }
+
+  /* Stack the actions on a phone. Three ragged pills of different widths read
+     as a wrapping accident; one column of equal rows reads as a menu. */
+  @media (max-width: 26rem) {
+    .hero__cta {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .hero__full {
+      letter-spacing: 0.12em;
     }
   }
 }
@@ -919,15 +988,24 @@
     letter-spacing: var(--track-tight);
   }
 
-  @media (max-width: 40rem) {
+  @media screen and (max-width: 40rem) {
+    /* One column: a key and its value read as a single group, so the key
+       drops its own hairline and the rule below the value becomes the only
+       divider between groups. Without this the key's rule sits flush
+       against the first bordered chip, and the two 1px lines merge. */
     .spec {
       grid-template-columns: minmax(0, 1fr);
     }
 
+    .spec__key {
+      padding-block: 1rem 0.5rem;
+      border-block-end: 0;
+    }
+
     .spec__val {
       border-inline-start: 0;
-      padding-inline-start: 0;
-      padding-block-start: 0;
+      padding-inline: 0;
+      padding-block: 0 1rem;
     }
   }
 
@@ -995,6 +1073,14 @@
     text-transform: uppercase;
     color: var(--dim);
     margin-block-end: clamp(1.125rem, 3vw, 2rem);
+  }
+
+  /* A repository path is one long token with no break opportunity of its own.
+     Without this it sets the item's minimum size and pushes the row wider than
+     a phone screen instead of wrapping. */
+  .page__meta span {
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
   }
 
   .page__title {
