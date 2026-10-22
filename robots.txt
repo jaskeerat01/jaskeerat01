@@ -1,8 +1,0 @@
-# Crawl the explicit .html documents, not the folder URLs.
-#
-# The `$` anchors the pattern to the end of the URL, so this matches only
-# addresses that end in a slash — "/writeups/" — and never a document such as
-# "/writeups/index.html".
-User-agent: *
-Allow: /
-Disallow: /*/$
